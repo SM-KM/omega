@@ -21,5 +21,9 @@ Keep track of finantial expences, to follow the flow of your own money
     Transactions between your cards on app, without having to switch apps [...]
     Recognize relashionships with different areas and concepts of payments [Redis, GraphQL?]
 
+
+- Nufi Security
+- GBM Plus
+- Arpro
     
 
