@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native';
+import React, { useRef, useState } from 'react';
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Pressable, TouchableHighlight, TouchableNativeFeedback, Alert, TouchableWithoutFeedback, Animated, Modal, Dimensions, TextInput } from 'react-native';
 
 const tweetsData = [
   {
@@ -19,22 +19,26 @@ const tweetsData = [
       {
         author: "Jane Smith",
         content: "This tweet has a thread! Tap to view all tweets in this conversation. This is the beginning of a longer discussion about various topics that I want to share with everyone. The full text will be visible both in the feed and in the thread view.",
-        avatar: "#ef4444"
+        avatar: "#ef4444",
+        auth: true
       },
       {
         author: "Jane Smith",
         content: "Second tweet in the thread with more details about the topic. I can write as much as I want here and it will all be displayed without cutting off any of the content. This makes it easy to read long-form content.",
-        avatar: "#ef4444"
+        avatar: "#ef4444",
+        auth: false
       },
       {
         author: "Jane Smith",
         content: "Third tweet continuing the discussion. Here's even more information that you might find interesting. The beauty of this approach is that everything is fully visible and readable without any ellipsis or truncation.",
-        avatar: "#ef4444"
+        avatar: "#ef4444",
+        auth: false
       },
       {
         author: "Jane Smith",
         content: "Final tweet wrapping up the thread! Thanks for reading through all of this content.",
-        avatar: "#ef4444"
+        avatar: "#ef4444",
+        auth: true
       }
     ]
   },
@@ -55,7 +59,8 @@ const tweetsData = [
       {
         author: "Alice Williams",
         content: "Starting a thread about React Native navigation",
-        avatar: "#f59e0b"
+        avatar: "#f59e0b",
+        auth: true
       },
       {
         author: "Alice Williams",
@@ -95,12 +100,15 @@ const TweetCard = ({ tweet, onPress }) => (
   </TouchableOpacity>
 );
 
+
 // Thread post with connecting lines
-const ThreadPost = ({ isLast, author, content, avatar }) => (
+// @ts-ignore
+
+const ThreadPost = ({ isLast, step, author, content, avatar, auth, onAuthorize }) => (
   <View style={styles.postContainer}>
     <View style={styles.leftColumn}>
       <View style={[styles.avatar, { backgroundColor: avatar }]}>
-        <Text style={styles.avatarText}>{author[0]}</Text>
+        <Text style={styles.avatarText}>{step}</Text>
       </View>
       {!isLast && <View style={styles.threadLine} />}
     </View>
@@ -108,11 +116,19 @@ const ThreadPost = ({ isLast, author, content, avatar }) => (
     <View style={styles.contentColumn}>
       <Text style={styles.author}>{author}</Text>
       <Text style={styles.content}>{content}</Text>
+
+      {auth && (
+        <TouchableOpacity style={styles.buttonContainer} onPress={onAuthorize}>
+          <Text style={styles.buttonText}>Authorize</Text>
+        </TouchableOpacity>
+      )}
     </View>
   </View>
 );
 
+
 // Main feed view
+// @ts-ignore
 const FeedView = ({ tweets, onTweetPress }) => (
   <View style={styles.container}>
     <View style={styles.header}>
@@ -131,27 +147,113 @@ const FeedView = ({ tweets, onTweetPress }) => (
 );
 
 // Thread detail view
-const ThreadView = ({ thread, onBack }) => (
-  <View style={styles.container}>
-    <View style={styles.header}>
-      <TouchableOpacity onPress={onBack} style={styles.backButton}>
-        <Text style={styles.backButtonText}>← Back</Text>
-      </TouchableOpacity>
-      <Text style={styles.headerText}>Thread</Text>
-    </View>
-    <ScrollView>
-      {thread.map((post, index) => (
-        <ThreadPost
-          key={index}
-          isLast={index === thread.length - 1}
-          author={post.author}
-          content={post.content}
-          avatar={post.avatar}
-        />
-      ))}
-    </ScrollView>
-  </View>
-);
+//@ts-ignore
+const ThreadView = ({ thread, onBack }) => {
+  const [visibleSteps, setVisibleSteps] = useState(1); // steps visible
+  const [waitingForAuth, setWaitingForAuth] = useState(false);
+  const [otpVisible, setOtpVisible] = useState(false);
+  const [currentAuthIndex, setCurrentAuthIndex] = useState<number | null>(null);
+
+  const handleAuthorize = (stepIndex: number) => {
+    setOtpVisible(true);
+    setCurrentAuthIndex(stepIndex);
+  };
+
+  const handleOtpSubmit = () => {
+    // Simulate successful OTP authorization
+    setOtpVisible(false);
+    setWaitingForAuth(false);
+    if (currentAuthIndex !== null) {
+      advanceStep(currentAuthIndex);
+      setCurrentAuthIndex(null);
+    }
+
+    setOtp("");
+  };
+  const [otp, setOtp] = useState('');
+
+  const advanceStep = (currentIndex: number) => {
+    let newVisible = currentIndex + 1;
+    // Auto-advance until hitting a step that requires auth
+    while (newVisible < thread.length && !thread[newVisible]?.auth) {
+      newVisible++;
+    }
+    setVisibleSteps(newVisible + 1);
+  };
+
+  return (
+    <View style={styles.container}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={onBack} style={styles.backButton}>
+          <Text style={styles.backButtonText}>← Back</Text>
+        </TouchableOpacity>
+        <Text style={styles.headerText}>Thread</Text>
+      </View>
+
+      <ScrollView contentContainerStyle={{ paddingBottom: 20 }}>
+        {thread.slice(0, visibleSteps).map((post, index) => (
+          <ThreadPost
+            key={index}
+            step={index + 1}
+            isLast={index === thread.length - 1}
+            author={post.author}
+            content={post.content}
+            avatar={post.avatar}
+            auth={post.auth}
+            onAuthorize={() => handleAuthorize(index)}
+          />
+        ))}
+      </ScrollView>
+
+      <Modal transparent visible={otpVisible} animationType="none">
+        <View style={styles.overlay}>
+          <View style={styles.drawer}>
+            <Text style={{ fontSize: 18, fontWeight: 'bold', marginBottom: 16 }}>
+              OTP to authorize
+            </Text>
+
+            <TextInput
+              style={{
+                borderWidth: 1,
+                borderColor: '#ddd',
+                borderRadius: 8,
+                padding: 12,
+                fontSize: 16,
+                marginBottom: 16,
+                textAlign: 'center',
+                letterSpacing: 8,
+              }}
+              placeholder="6-digit OTP"
+              keyboardType="number-pad"
+              maxLength={6}
+              value={otp}
+              onChangeText={setOtp}
+              autoFocus
+            />
+
+            <TouchableOpacity
+              style={styles.actionButton}
+              onPress={handleOtpSubmit}
+              disabled={otp.length !== 6}
+            >
+              <Text style={{ color: 'white', fontWeight: 'bold' }}>Submit</Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={[styles.closeButton, { marginTop: 10 }]}
+              onPress={() => {
+                setOtpVisible(false);
+                setOtp('');
+              }}
+            >
+              <Text style={styles.closeButtonText}>Cancel</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>    </View>
+  );
+};
+
 
 // Main App component with navigation logic
 export default function App() {
@@ -265,5 +367,62 @@ const styles = StyleSheet.create({
     fontSize: 15,
     lineHeight: 20,
     color: '#1f2937',
+  },
+
+  buttonContainer: {
+    alignItems: 'center',
+    backgroundColor: '#f1f1f1',
+    borderRadius: 5,
+    marginTop: 10,
+    padding: 10,
+  },
+  buttonText: {
+    color: 'black',
+    fontSize: 16,
+  },
+
+  nextButton: {
+    marginTop: 0,
+    padding: 12,
+    backgroundColor: '#3b82f6',
+    borderRadius: 6,
+    alignSelf: 'center',
+  },
+  nextButtonText: {
+    color: '#fff',
+    fontWeight: 'bold',
+    fontSize: 16,
+  },
+  actionButton: {
+    backgroundColor: '#3b82f6',
+    paddingVertical: 14,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+
+  overlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'flex-end',
+  },
+  drawer: {
+    backgroundColor: '#fff',
+    borderTopLeftRadius: 24,
+    borderTopRightRadius: 24,
+    paddingHorizontal: 24,
+    paddingTop: 16,
+    paddingBottom: 40,
+    minHeight: 400,
+  },
+  closeButton: {
+    backgroundColor: '#e4e4e4',
+    paddingVertical: 14,
+    borderRadius: 10,
+    alignItems: 'center',
+  },
+  closeButtonText: {
+    color: '#000',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });

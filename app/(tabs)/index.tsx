@@ -1,3 +1,4 @@
+import PlaidBankConnection from '@/components/PlaidBankConnection';
 import Item from '@/components/transaction';
 import React, { useRef, useState } from 'react';
 import {
@@ -67,7 +68,8 @@ export default function CardCarousel() {
   const slideAnim = useRef(new Animated.Value(SCREEN_HEIGHT)).current;
   const [focusedIndex, setFocusedIndex] = useState(0);
   const [isDrawerVisible, setIsDrawerVisible] = useState(false);
-  const [selectedCard, setSelectedCard] = useState(null);
+  const [selectedCard, setSelectedCard] = useState<any>(null);
+
 
   const handleScroll = (event: any) => {
     const offsetY = event.nativeEvent.contentOffset.y;
@@ -116,6 +118,10 @@ export default function CardCarousel() {
           }}>Manage {"\n"}<Text style={{ color: "" }}>
               your cards</Text></Text>
         </View>
+
+        {/* <PlaidBankConnection /> */}
+
+
         {cards.map((card, index) => {
           const inputRange = [
             (index - 1) * (CARD_HEIGHT + SPACING),
