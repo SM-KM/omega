@@ -1,6 +1,6 @@
-#**Omega**
+**Omega**
 
-###Team
+Team
  - Santiago Vargas Rugeles 
  - Jose Hugo Aguayo Mendoza
  - Andres Ramirez Ruiz
