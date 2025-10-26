@@ -1,4 +1,4 @@
-### OMEGA
+## OMEGA
 
 Team
  - Santiago Vargas Rugeles 
@@ -49,7 +49,7 @@ Team
             - Supabase: Managing authentication, user sessions, and database storage.
             - Git: Version control and collaborative development.
 
-## Dependencies
+### Dependencies
 
       The OMEGA application relies on parsing the TypeScript script "server.ts," which determines the process and the 
       best route for making payments. It's essentially the brain of OMEGA's security and the driving force behind the idea. 
