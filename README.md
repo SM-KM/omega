@@ -21,7 +21,7 @@ Team
         - Access balances and current statements of every single one of 
           your credit/debit. 
         - Keep an analysis of different due pay dates of the credit cards,
-          automate of suggest a flow to do it depending on the analysis, and show all the   process or reasoning
+          automate of suggest a flow to do it depending on the analysis, and show all the process or reasoning
           behind the payment plan suggested and the result, saving some money and debt.
     
         
@@ -33,6 +33,7 @@ Team
             - Access real-time financial data, such as balances, transactions, and due dates.  
             - Authenticate payments and transfers authorized by the user through encrypted banking channels.  
             - Standardize integrations using Open Banking APIs, making it possible to interact with different financial institutions in a unified way.
+            
         Why Plaid?
             - Analyze each user's financial status across multiple banks.  
             - Detect debts or upcoming payment deadlines.  
@@ -63,7 +64,7 @@ Team
         - No data is accessible until successful authentication.
 
     Personalized Recommendations:
-        - For each credit or debit card, the app shows individual recommendations explaining: Why that specific card is the best option for the payment of the other card, with a brief reason,              such as lower interest rate, available balance, or upcoming due date.  
+        - For each credit or debit card, the app shows individual recommendations explaining: Why that specific card is the best option for the payment of the other card, with a brief reason, such as lower interest rate, available balance, or upcoming due date.  
         - Each recommendation includes a “Learn more” section where users can view deeper details if they wish.
 
     Payment Actions:
