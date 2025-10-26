@@ -26,8 +26,8 @@ Team
           behind the payment plan suggested and the result, saving some money and debt.
     
         
-   Essential tools
-        To make this possible, we use a specialized tool called Plaid, that is a secure financial connectivity provider allowing us to connect multiple banks and user cards to access up-to-date information about accounts, balances, credit limits, and payment dates, all without storing sensitive information. 
+### Essential tools
+   To make this possible, we use a specialized tool called Plaid, that is a secure financial connectivity provider allowing us to connect multiple banks and user cards to access up-to-date information about accounts, balances, credit limits, and payment dates, all without storing sensitive information. 
         
         What Plaid Does?
             - Securely connect to multiple banks without storing user credentials.  
@@ -40,7 +40,7 @@ Team
             - Detect debts or upcoming payment deadlines.  
             - Guarantee compliance with financial regulations like PSD2 and Open Banking standards.
         
-   Programming Tools
+### Programming Tools
         
       The programming tools that we used for this app were:
             - TypeScript: Logic and app structure.
