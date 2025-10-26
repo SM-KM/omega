@@ -6,6 +6,11 @@ Team
  - Andres Ramirez Ruiz
  - Arturo Pedraza Gonzalez 
 
+To compile
+```bash 
+npx expo start -c
+```
+
 ## Problem Statement
 
    *"Keep track of all your cards payments by optimizing them with the best financial option available."*
