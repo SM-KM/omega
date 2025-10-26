@@ -38,8 +38,8 @@ export default function Register() {
     if (error) {
       Alert.alert('Sign-up error', error.message);
     } else {
-      Alert.alert('Account created', 'You can now sign in.', [
-        { text: 'Go to login', onPress: () => router.push('/login') },
+      Alert.alert('Account created', 'You can now log in.', [
+        { text: 'Go to log in', onPress: () => router.push('/login') },
       ]);
     }
   };

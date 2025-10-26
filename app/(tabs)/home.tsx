@@ -46,19 +46,19 @@ const DATA = [
 
 const cards = [
   { id: 1, name: "Sara's Card", title: 'Credit Card', gone: 569.4, balance: 2002.0, color: '#31cb79ff', lastFour: '8933', company: 'AMERICAN\nEXPRESS', hasContactless: true },
-  { id: 2, name: 'Santander', title: 'Crypto Card', gone: 2984.3, balance: 1784.2, color: '#e83f2cff', lastFour: '8345', company: null, hasContactless: false },
+  { id: 2, name: 'Santander', title: 'Crypto Card', gone: 0, balance: 1784.2, color: '#e83f2cff', lastFour: '8345', company: null, hasContactless: false },
   { id: 3, name: 'BBVA Bancomer', title: 'Debit Card', gone: 0, balance: 945.78, color: '#4250ceff', lastFour: '1243', company: null, hasContactless: false, hasStripes: true },
-  { id: 4, name: 'BBVA', title: 'Internet Card', gone: 2038.3, balance: 802.0, color: '#4250ceff', lastFour: '8163', company: 'G Pay', hasContactless: false },
-  { id: 5, name: 'HSBC', title: 'Bonus Card', gone: 394.3, balance: 250.1, color: '#e83f2cff', lastFour: '7291', company: null, hasContactless: false },
-  { id: 6, name: '', title: 'Internet Card', gone: 15420.3, balance: 16410.55, color: '#C8A8D8', lastFour: '8187', company: null, hasContactless: false },
-  { id: 7, name: '', title: 'Card', gone: 983.4, balance: 16544.77, color: '#E8A8C8', lastFour: '1234', company: null, hasContactless: false },
+  { id: 4, name: 'BBVA', title: 'Internet Card', gone: 0, balance: 802.0, color: '#4250ceff', lastFour: '8163', company: 'G Pay', hasContactless: false },
+  { id: 5, name: 'HSBC', title: 'Bonus Card', gone: 0, balance: 250.1, color: '#e83f2cff', lastFour: '7291', company: null, hasContactless: false },
+  { id: 6, name: '', title: 'Internet Card', gone: 0, balance: 16410.55, color: '#C8A8D8', lastFour: '8187', company: null, hasContactless: false },
+  { id: 7, name: '', title: 'Card', gone: 0, balance: 16544.77, color: '#E8A8C8', lastFour: '1234', company: null, hasContactless: false },
   { id: 8, name: '', title: 'Credit Card', gone: 345.3, balance: 2002.0, color: '#31cb79ff', lastFour: '8933', company: 'AMERICAN\nEXPRESS', hasContactless: true },
-  { id: 9, name: '', title: 'Crypto Card', gone: 3453.3, balance: 1784.2, color: '#E8F48C', lastFour: '8345', company: null, hasContactless: false },
+  { id: 9, name: '', title: 'Crypto Card', gone: 0, balance: 1784.2, color: '#E8F48C', lastFour: '8345', company: null, hasContactless: false },
   { id: 10, name: '', title: 'Debit Card', gone: 0, balance: 945.78, color: '#90C8AC', lastFour: '1243', company: null, hasContactless: false, hasStripes: true },
-  { id: 11, name: '', title: 'Internet Card', gone: 342.3, balance: 802.0, color: '#D8D8E8', lastFour: '8163', company: 'G Pay', hasContactless: false },
-  { id: 12, name: '', title: 'Bonus Card', gone: 3452, balance: 250.1, color: '#B4B8E8', lastFour: '7291', company: null, hasContactless: false },
-  { id: 13, name: '', title: 'Internet Card', gone: 349.2, balance: 16410.55, color: '#C8A8D8', lastFour: '8187', company: null, hasContactless: false },
-  { id: 14, name: '', title: 'Card', gone: 232.34, balance: 16544.77, color: '#E8A8C8', lastFour: '1234', company: null, hasContactless: false },
+  { id: 11, name: '', title: 'Internet Card', gone: 0, balance: 802.0, color: '#D8D8E8', lastFour: '8163', company: 'G Pay', hasContactless: false },
+  { id: 12, name: '', title: 'Bonus Card', gone: 0, balance: 250.1, color: '#B4B8E8', lastFour: '7291', company: null, hasContactless: false },
+  { id: 13, name: '', title: 'Internet Card', gone: 0, balance: 16410.55, color: '#C8A8D8', lastFour: '8187', company: null, hasContactless: false },
+  { id: 14, name: '', title: 'Card', gone: 0, balance: 16544.77, color: '#E8A8C8', lastFour: '1234', company: null, hasContactless: false },
 ];
 
 export default function CardCarousel() {
