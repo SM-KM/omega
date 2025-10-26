@@ -222,7 +222,8 @@ export default function CardCarousel() {
                     <FlatList
                       data={DATA}
                       renderItem={({ item }) => (
-                        <Item title={item.concept} amount={item.amount} gone={item.gone} card={item.card} />
+                        <Item title={item.concept} amount={item.amount} gone={item.gone} card={item.card}
+                        name={item.name} />
                       )}
                       keyExtractor={(item) => item.id}
                     />
