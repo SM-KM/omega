@@ -6,14 +6,22 @@ Team
  - Andres Ramirez Ruiz
  - Arturo Pedraza Gonzalez 
 
-# Core
-   *"Keep the track of all your cards payments by optimizing it with the best financial option to do it."*
-       
+# Problem Statement
+
+   *"Keep track of all your cards payments by optimizing them with the best financial option available."*
+
+ Problem
+  Many users have multiple credit and debit cards, each with different due dates, balances, and interest rates. Managing them becomes confusing and often leads to late payments, high interests, and loss of control. The lack of visibility across several banks makes it difficult to take smart financial decisions and avoid debt growth.
+
+ Solution 
+  This app provides a clear and optimized way to manage all your cards in one place. It analyses your balances, interest rates, and due dates to suggest the best payment strategy possible, explaining why each recommendation is made. This helps users save money, stay organized, and make smarter financial moves without extra effort.
+   
+    
      By:
         - Access balances and current statements of every single one of 
           your credit/debit. 
         - Keep an analysis of different due pay dates of the credit cards,
-          automate of suggest flow to do it depending on the analysis, and show all the proccess or reasoning
+          automate of suggest a flow to do it depending on the analysis, and show all the   process or reasoning
           behind the payment plan suggested and the result, saving some money and debt.
     
         
@@ -33,11 +41,11 @@ Team
    Programming Tools
         
       The programming tools that we used for this app were:
-            - TypeScript
-            - Plaid
-            - React Native
-            - SupaBase
-            - Git
+            - TypeScript: Logic and app structure.
+            - Plaid: Securely connecting to user financial data.
+            - React Native: Building a cross-platform mobile app.
+            - Supabase: Managing authentication, user sessions, and database storage.
+            - Git: Version control and collaborative development.
             
              
 # Security / Encrypt
@@ -48,7 +56,7 @@ Team
         Plaid handles all, such as the financial security, like encrypted connections with banks, authentication with financial institutions, and protection of user credentials. 
         
     In the app:
-        We focuses on ensuring secure user interaction and decision-making at every step:
+        We focus on ensuring secure user interaction and decision-making at every step:
         
     Access and Authentication:
         - To enter the app, users must verify their identity using PIN, or password (Depending on the device, you can use Face ID.), this ensures that only authorized users can view or manage their connected financial accounts.  
@@ -63,16 +71,22 @@ Team
         - Before confirming any payment between cards, users are also asked to verify again with their PIN or password.
 
     Instruction Cleanup
-        - After a transaction is confirmed and completed, all temporary authorizations or payment instructions are automatically deleted, this prevents duplicated payments, pending requests, or            accidental re-use of old authorizations.
+        - After a transaction is confirmed and completed, all temporary authorizations or payment instructions are automatically deleted, this prevents duplicated payments, pending requests, or accidental re-use of old authorizations.
 
    Together, this guarantees that every action from the login to the payment, is intentional, verified, and secure.
    
-# Potential expansions:
+# Potential Expansions:
         
          -Parental control for extension cards with the ability to monitor or block card usage.
          -Digital widgets to monitor different cards without having to log in to the app.
          -Filters to monitor purchases by category.
          -Geolocation of card usage.
+
+
+# Expected Impact
+
+  By providing payment recommendations and showing users exactly why they chose each option, the app helps reduce interest, avoid unnecessary fees, and improve overall financial literacy. It allows users to keep their payments organized, efficient, and transparent, with complete security and control.
+
 
     
 
