@@ -1,4 +1,4 @@
-**OMEGA**
+#**OMEGA**
 
 Team
  - Santiago Vargas Rugeles 
@@ -6,17 +6,18 @@ Team
  - Andres Ramirez Ruiz
  - Arturo Pedraza Gonzalez 
 
-# Problem Statement
+## Problem Statement
 
    *"Keep track of all your cards payments by optimizing them with the best financial option available."*
 
- Problem
-  Many users have multiple credit and debit cards, each with different due dates, balances, and interest rates. Managing them becomes confusing and often leads to late payments, high interests, and loss of control. The lack of visibility across several banks makes it difficult to take smart financial decisions and avoid debt growth.
+### Problem: 
+   Many users have multiple credit and debit cards, each with different due dates, balances, and interest rates. Managing them becomes confusing and often leads to late payments, high interests, and loss of control. The lack of visibility across several banks makes it difficult to take smart financial decisions and avoid debt growth.
 
- Solution 
+### Solution: 
   This app provides a clear and optimized way to manage all your cards in one place. It analyses your balances, interest rates, and due dates to suggest the best payment strategy possible, explaining why each recommendation is made. This helps users save money, stay organized, and make smarter financial moves without extra effort.
+
+## Implementation Overview
    
-    
      By:
         - Access balances and current statements of every single one of 
           your credit/debit. 
@@ -49,7 +50,7 @@ Team
             - Git: Version control and collaborative development.
             
              
-# Security / Encrypt
+## Security / Encrypt
 
    In the security part, we split it by subtopics, depending on the type of functionality we want to protect.
    
@@ -76,7 +77,7 @@ Team
 
    Together, this guarantees that every action from the login to the payment, is intentional, verified, and secure.
    
-# Potential Expansions:
+## Potential Expansions:
         
          -Parental control for extension cards with the ability to monitor or block card usage.
          -Digital widgets to monitor different cards without having to log in to the app.
@@ -84,7 +85,7 @@ Team
          -Geolocation of card usage.
 
 
-# Expected Impact
+## Expected Impact
 
   By providing payment recommendations and showing users exactly why they chose each option, the app helps reduce interest, avoid unnecessary fees, and improve overall financial literacy. It allows users to keep their payments organized, efficient, and transparent, with complete security and control.
 
