@@ -67,11 +67,12 @@ Team
 
    Together, this guarantees that every action from the login to the payment, is intentional, verified, and secure.
    
-#Potential expansions:
-         Parental control for extension cards with the ability to monitor or block card usage.
-         Digital widgets to monitor different cards without having to log in to the app.
-         Filters to monitor purchases by category.
-         Geolocation of card usage.
+# Potential expansions:
+        
+         -Parental control for extension cards with the ability to monitor or block card usage.
+         -Digital widgets to monitor different cards without having to log in to the app.
+         -Filters to monitor purchases by category.
+         -Geolocation of card usage.
 
     
 
