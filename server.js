@@ -1,6 +1,3 @@
-
-
-// server.js
 import express from 'express';
 import cors from 'cors';
 import { Configuration, PlaidApi, PlaidEnvironments } from 'plaid';
@@ -11,54 +8,52 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// Plaid client config (Sandbox)
 const config = new Configuration({
 	basePath: PlaidEnvironments.sandbox,
 	baseOptions: {
 		headers: {
-			'PLAID-CLIENT-ID': process.env.PLAID_CLIENT_ID,
-			'PLAID-SECRET': process.env.PLAID_SECRET,
+			'PLAID-CLIENT-ID': process.env.CLIENT_ID_PLAID,
+			'PLAID-SECRET': process.env.SANDBOX_PLAID,
 		},
 	},
 });
 
 const client = new PlaidApi(config);
 let accessToken = null;
-
-// 1️⃣ Create link token (fake sandbox user)
 app.post('/create_link_token', async (req, res) => {
 	try {
 		const response = await client.linkTokenCreate({
-			user: { client_user_id: 'fake-user-123' }, // any string works in sandbox
+			user: { client_user_id: 'fake-user-123' },
 			client_name: 'My Expo App (Sandbox)',
 			products: ['auth', 'transactions'],
 			country_codes: ['US'],
 			language: 'en',
 		});
 		res.json(response.data);
+		console.log(response.data);
 	} catch (error) {
 		console.error('Error creating link token:', error.response?.data || error.message);
 		res.status(500).json({ error: error.message });
 	}
 });
 
-// 2️⃣ Exchange public token for access token
 app.post('/exchange_public_token', async (req, res) => {
 	try {
 		const { public_token } = req.body;
+		console.log(public_token)
 		const response = await client.itemPublicTokenExchange({ public_token });
 
 		accessToken = response.data.access_token;
 		const item_id = response.data.item_id;
 
 		res.json({ access_token: accessToken, item_id });
+		console.log(accessToken)
 	} catch (error) {
 		console.error('Exchange error:', error.response?.data || error.message);
 		res.status(500).json({ error: error.message });
 	}
 });
 
-// 3️⃣ Fetch accounts
 app.get('/accounts', async (req, res) => {
 	try {
 		if (!accessToken) throw new Error('Access token not set');
@@ -70,7 +65,6 @@ app.get('/accounts', async (req, res) => {
 	}
 });
 
-// 4️⃣ Fetch transactions (last 30 days)
 app.get('/transactions', async (req, res) => {
 	try {
 		if (!accessToken) throw new Error('Access token not set');

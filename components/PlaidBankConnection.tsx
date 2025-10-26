@@ -20,8 +20,6 @@ export default function App() {
   }, []);
 
 
-
-
   // 2️⃣ Capture public token from Plaid WebView
   const handleNavigation = async (navState: any) => {
     const url = navState.url;
@@ -29,15 +27,15 @@ export default function App() {
       const public_token = url.split('public_token=')[1].split('&')[0];
 
       // 3️⃣ Exchange public token for access token
-      await axios.post('http://192.168.1.102:3000/exchange_public_token', { public_token });
-
+      await axios.post('http://10.22.143.112:3000/exchange_public_token', { public_token });
       setShowPlaid(false);
 
       // 4️⃣ Fetch accounts and transactions
-      const accountsRes = await axios.get('http://192.168.1.102:3000/accounts');
+      const accountsRes = await axios.get('http://10.22.143.112:3000/accounts');
       setAccounts(accountsRes.data);
+      console.log(accountsRes.data);
 
-      const transactionsRes = await axios.get('http://192.168.1.102:3000/transactions');
+      const transactionsRes = await axios.get('http://10.22.143.112:3000/transactions');
       setTransactions(transactionsRes.data);
     }
   };
@@ -62,22 +60,22 @@ export default function App() {
       <Button title="Connect Bank or Card" onPress={() => setShowPlaid(true)} />
 
       <Text style={{ marginTop: 20, fontWeight: 'bold' }}>Accounts:</Text>
-      <FlatList
-        data={accounts}
-        keyExtractor={(item: any) => item.account_id}
-        renderItem={({ item }) => (
-          <Text>{`${item.name} - ${item.balances.current} ${item.balances.iso_currency_code}`}</Text>
-        )}
-      />
+      {/* <FlatList */}
+      {/*   data={accounts} */}
+      {/*   keyExtractor={(item: any) => item.account_id} */}
+      {/*   renderItem={({ item }) => ( */}
+      {/*     <Text>{`${item.name} - ${item.balances.current} ${item.balances.iso_currency_code}`}</Text> */}
+      {/*   )} */}
+      {/* /> */}
 
       <Text style={{ marginTop: 20, fontWeight: 'bold' }}>Transactions:</Text>
-      <FlatList
-        data={transactions}
-        keyExtractor={(item: any) => item.transaction_id}
-        renderItem={({ item }) => (
-          <Text>{`${item.date} - ${item.name} - ${item.amount} ${item.iso_currency_code}`}</Text>
-        )}
-      />
+      {/* <FlatList */}
+      {/*   data={transactions} */}
+      {/*   keyExtractor={(item: any) => item.transaction_id} */}
+      {/*   renderItem={({ item }) => ( */}
+      {/*     <Text>{`${item.date} - ${item.name} - ${item.amount} ${item.iso_currency_code}`}</Text> */}
+      {/*   )} */}
+      {/* /> */}
     </View>
   );
 }

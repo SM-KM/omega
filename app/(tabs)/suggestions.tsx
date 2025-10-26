@@ -1,80 +1,147 @@
 import React, { useRef, useState } from 'react';
 import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Pressable, TouchableHighlight, TouchableNativeFeedback, Alert, TouchableWithoutFeedback, Animated, Modal, Dimensions, TextInput } from 'react-native';
 
-const tweetsData = [
+
+
+const mockData = [
   {
     id: 1,
-    author: "John Doe",
-    content: "This is a standalone tweet without a thread.",
+    author: "Financial Strategy",
+    content: "Starting a balance transfer plan to reduce interest payments across your credit cards.",
     avatar: "#3b82f6",
-    hasThread: false
-  },
-  {
-    id: 2,
-    author: "Jane Smith",
-    content: "This tweet has a thread! Tap to view all tweets in this conversation. This is the beginning of a longer discussion about various topics that I want to share with everyone.",
-    avatar: "#ef4444",
     hasThread: true,
     thread: [
       {
-        author: "Jane Smith",
-        content: "This tweet has a thread! Tap to view all tweets in this conversation. This is the beginning of a longer discussion about various topics that I want to share with everyone. The full text will be visible both in the feed and in the thread view.",
-        avatar: "#ef4444",
+        author: "Financial Strategy",
+        content: "Transfer $15,000 from 'BBVA Gold' to 'HSBC Zero'. This lowers your interest cost because HSBC Zero has a lower APR. Estimated interest savings: $147.95.",
+        avatar: "#3b82f6",
         auth: true
       },
       {
-        author: "Jane Smith",
-        content: "Second tweet in the thread with more details about the topic. I can write as much as I want here and it will all be displayed without cutting off any of the content. This makes it easy to read long-form content.",
-        avatar: "#ef4444",
-        auth: false
+        author: "Financial Strategy",
+        content: "Next, transfer $8,000 from 'Citi Premier' to 'BBVA Gold'. This consolidates debt to optimize payments and reduce fees. Estimated interest savings: $85.48.",
+        avatar: "#3b82f6"
       },
       {
-        author: "Jane Smith",
-        content: "Third tweet continuing the discussion. Here's even more information that you might find interesting. The beauty of this approach is that everything is fully visible and readable without any ellipsis or truncation.",
-        avatar: "#ef4444",
-        auth: false
-      },
+        author: "Financial Strategy",
+        content: "By following these transfers, you set up a structure where your payments target the highest-interest debt first, maximizing your savings.",
+        avatar: "#3b82f6"
+      }
+    ]
+  },
+  {
+    id: 2,
+    author: "Month 1 Plan",
+    content: "Available funds this month: $7,000. Here's the optimal payment allocation to reduce interest:",
+    avatar: "#f59e0b",
+    hasThread: true,
+    thread: [
       {
-        author: "Jane Smith",
-        content: "Final tweet wrapping up the thread! Thanks for reading through all of this content.",
-        avatar: "#ef4444",
+        author: "Month 1 Plan",
+        content: "Pay minimums first: HSBC Zero $400, BBVA Gold $400, Santander Light $360. Covering minimums prevents late fees and keeps your credit healthy.",
+        avatar: "#f59e0b",
         auth: true
+      },
+      {
+        author: "Month 1 Plan",
+        content: "Allocate the remaining $5,840 to HSBC Zero, the card with the highest interest. This accelerates debt reduction and maximizes interest savings.",
+        avatar: "#f59e0b"
+      },
+      {
+        author: "Month 1 Plan",
+        content: "Following this plan, you could save an extra ~$150 this month in interest compared to paying minimums only.",
+        avatar: "#f59e0b"
       }
     ]
   },
   {
     id: 3,
-    author: "Bob Johnson",
-    content: "Another standalone tweet here. This one also has plenty of text that will be fully visible.",
-    avatar: "#10b981",
-    hasThread: false
+    author: "Month 2 Plan",
+    content: "Available funds this month: $7,000. Continue prioritizing payments to high-interest debt.",
+    avatar: "#ef4444",
+    hasThread: true,
+    thread: [
+      {
+        author: "Month 2 Plan",
+        content: "Pay minimums: HSBC Zero $400, BBVA Gold $394, Santander Light $351. Covering minimums ensures no penalties and keeps your payment strategy on track.",
+        avatar: "#ef4444",
+        auth: true
+      },
+      {
+        author: "Month 2 Plan",
+        content: "Allocate the remaining $5,855 to HSBC Zero to further reduce high-interest debt quickly.",
+        avatar: "#ef4444"
+      },
+      {
+        author: "Month 2 Plan",
+        content: "This method continues to save you around ~$150 in interest compared to a standard minimum payment approach.",
+        avatar: "#ef4444"
+      }
+    ]
   },
   {
     id: 4,
-    author: "Alice Williams",
-    content: "Starting a thread about React Native navigation and how to implement it effectively in your applications.",
+    author: "Month 3 Plan",
+    content: "Available funds this month: $7,000. Stick to the proven strategy to reduce interest payments.",
     avatar: "#f59e0b",
     hasThread: true,
     thread: [
       {
-        author: "Alice Williams",
-        content: "Starting a thread about React Native navigation",
+        author: "Month 3 Plan",
+        content: "Pay minimums: HSBC Zero $400, BBVA Gold $388.09, Santander Light $342.23.",
         avatar: "#f59e0b",
         auth: true
       },
       {
-        author: "Alice Williams",
-        content: "Navigation in React Native can be done with state management.",
+        author: "Month 3 Plan",
+        content: "Allocate the remaining $5,869.68 to HSBC Zero. This continues to reduce the balance on the highest-interest card first.",
         avatar: "#f59e0b"
       },
       {
-        author: "Alice Williams",
-        content: "It's simple and effective for basic use cases! You can manage view transitions, pass data between screens, and create a smooth user experience.",
+        author: "Month 3 Plan",
+        content: "By Month 3, following this flow could save you more than $4000 in total interest compared to paying only minimums, keeping more money in your pocket.",
         avatar: "#f59e0b"
+      }
+    ]
+  },
+  {
+    id: 5,
+    author: "Summary",
+    content: "Final balances and interest paid after following this strategic payment plan:",
+    avatar: "#3b82f6",
+    hasThread: true,
+    thread: [
+      {
+        author: "Summary",
+        content: "BBVA Gold | Initial: $8,000 | Final: $7,645.37 | Interest Paid: $827.46",
+        avatar: "#3b82f6",
+        auth: true
+      },
+      {
+        author: "Summary",
+        content: "Citi Premier | Initial: $0 | Final: $0 | Interest Paid: $0",
+        avatar: "#3b82f6"
+      },
+      {
+        author: "Summary",
+        content: "HSBC Zero | Initial: $27,000 | Final: $11,551.04 | Interest Paid: $2,863.52",
+        avatar: "#3b82f6"
+      },
+      {
+        author: "Summary",
+        content: "Santander Light | Initial: $9,000 | Final: $8,341.73 | Interest Paid: $394.96",
+        avatar: "#3b82f6"
+      },
+      {
+        author: "Summary",
+        content: "Total Interest Paid: $4,085.94 — following this strategy could save you thousands compared to paying only minimums.",
+        avatar: "#3b82f6"
       }
     ]
   }
 ];
+
+
 
 // Single tweet in feed view
 //@ts-ignore
@@ -86,14 +153,15 @@ const TweetCard = ({ tweet, onPress }) => (
   >
     <View style={styles.tweetContent}>
       <View style={[styles.avatar, { backgroundColor: tweet.avatar }]}>
-        <Text style={styles.avatarText}>{tweet.author[0]}</Text>
       </View>
 
       <View style={styles.tweetTextContainer}>
-        <Text style={styles.author}>{tweet.author}</Text>
+        <View>
+          <Text style={styles.author}>{tweet.author}</Text>
+        </View>
         <Text style={styles.content}>{tweet.content}</Text>
         {tweet.hasThread && (
-          <Text style={styles.threadIndicator}>Show this thread →</Text>
+          <Text style={styles.threadIndicator}>Start plan →</Text>
         )}
       </View>
     </View>
@@ -275,7 +343,7 @@ export default function App() {
   return (
     <>
       {currentView === 'feed' ? (
-        <FeedView tweets={tweetsData} onTweetPress={handleTweetPress} />
+        <FeedView tweets={mockData} onTweetPress={handleTweetPress} />
       ) : (
         <ThreadView thread={selectedThread} onBack={handleBack} />
       )}
@@ -425,4 +493,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
+
+  save: {
+    color: "green"
+  }
 });
