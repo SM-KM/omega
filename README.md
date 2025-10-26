@@ -11,11 +11,11 @@ Team
        
      By:
         - Access balances and current statements of every single one of 
-          your credit/debit. [ filtering concepts of different transactions ]
-        - Keep an analysis of different due dates of not only credit cards,
-          creating remindings for underuse, automate of suggest flow to do it 
-          depending on the analysis, and show all the proccess or reasoning behind the payment plan suggested and the result, saving some money and debt.
-        - How much do they save by following the suggestions.
+          your credit/debit. 
+        - Keep an analysis of different due pay dates of the credit cards,
+          automate of suggest flow to do it depending on the analysis, and show all the proccess or reasoning
+          behind the payment plan suggested and the result, saving some money and debt.
+    
         
    Essential tools
         To make this possible, we use a specialized tool called Plaid, that is a secure financial connectivity provider allowing us to connect multiple banks and user cards to access up-to-date information about accounts, balances, credit limits, and payment dates, all without storing sensitive information. 
@@ -51,7 +51,7 @@ Team
         We focuses on ensuring secure user interaction and decision-making at every step:
         
     Access and Authentication:
-        - To enter the app, users must verify their identity using Face ID, PIN, or password, this ensures that only authorized users can view or manage their connected financial accounts.  
+        - To enter the app, users must verify their identity using PIN, or password (Depending on the device, you can use Face ID.), this ensures that only authorized users can view or manage their connected financial accounts.  
         - No data is accessible until successful authentication.
 
     Personalized Recommendations:
@@ -60,7 +60,7 @@ Team
 
     Payment Actions:
         - Each recommendation has its own payment option, which users can decide per transaction, not all at once. This avoids confusion and prevents unwanted approvals.  
-        - Before confirming any payment between cards, users are also asked to verify again with their Face ID, PIN or password.
+        - Before confirming any payment between cards, users are also asked to verify again with their PIN or password.
 
     Instruction Cleanup
         - After a transaction is confirmed and completed, all temporary authorizations or payment instructions are automatically deleted, this prevents duplicated payments, pending requests, or            accidental re-use of old authorizations.
