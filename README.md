@@ -66,7 +66,12 @@ Team
         - After a transaction is confirmed and completed, all temporary authorizations or payment instructions are automatically deleted, this prevents duplicated payments, pending requests, or            accidental re-use of old authorizations.
 
    Together, this guarantees that every action from the login to the payment, is intentional, verified, and secure.
-
+   
+#Potential expansions:
+         Parental control for extension cards with the ability to monitor or block card usage.
+         Digital widgets to monitor different cards without having to log in to the app.
+         Filters to monitor purchases by category.
+         Geolocation of card usage.
 
     
 
