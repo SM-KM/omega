@@ -34,11 +34,10 @@ Team
         
       The programming tools that we used for this app were:
             - TypeScript
-            - JavaScript
+            - Plaid
             - React Native
             - SupaBase
             - Git
-            - Github
             
              
 # Security / Encrypt
